@@ -1,0 +1,103 @@
+---
+title: "Project 1"
+author: "Saatvik Anantha"
+date: "2023-10-04"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r}
+videogames <- read.csv("Project1_videogames.csv")
+library(ggplot2)
+vid_ggplot <- ggplot(videogames)
+url <- "https://media.gq-magazine.co.uk/photos/645b5c3c8223a5c3801b8b26/16:9/w_2240,c_limit/100-best-games-hp-b.jpg)"
+
+
+```
+
+<center><img src="`r url`"/></center>
+
+Source: <https://www.gq-magazine.co.uk/article/best-video-games-all-time>
+
+Data Set: <https://utexas.instructure.com/courses/1370544/assignments/6315129>
+
+This data set analyzes different variables related to video games released between 2004 and 2008 and how they might effect the games review score(0-100). The variables used are the publisher, the genre, the year it was released the console type(Xbox, Playstation etc.), game rating (E=everyone, T=Teen, M=Mature), the amount of hours the average user takes to finish the game, and the total sales (in millions of \$).
+
+The data was originally collected by Dr. Joe Cox and the playtime information was collected from crowd-sourced data on "How Long to Beat".
+
+The variable that's anaylzed more thoroughly is the games review score(outcome variable) by comparing trends with the Average Hours to Finish, The games sales(millions) and the type of console it was played on. These 3 predictor variables often play a huge role in the success of games as they determine branding, influence the potential target audience and can help determine the mental effects on video game users.
+
+Outcome variable = Games Review Score (0-100) 
+Predictor variables = Average Hours to Finish, Sales(millions) and Type of Console
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+
+vid_ggplot <- ggplot(videogames)
+videogames['E'] <- videogames$Rating == 'E'
+vid_ggplot + geom_histogram(aes(x=ReviewScore, col = 'E'), col = 'black', fill = 'blue', bins = 50 ) + labs(title = "Distribution of Review Scores for Popular Video Games", x = 'Review Scores', y = 'Frequency')
+
+summary(videogames$ReviewScore)
+```
+
+The distribution of the review scores is fairly skewed left and unimodal with the mean of about 69.9 and a median centered around 71. The spread of the distribution ranges from 20 to 98, so the range of the data is 78. The distribution doesn't have any unusual features because there are no glaringly obviously outliers.
+
+```{r, echo=FALSE}
+
+vid_ggplot + geom_point(aes(x = AvgHoursToFinish, y = ReviewScore), col = 'red', fill = 'blue') + labs(title = "Distribution of Review Scores for Popular Video Games using Average Hours", x = 'Average Hours', y = 'Review Score')
+cor(videogames$AvgHoursToFinish, videogames$ReviewScore)
+
+```
+
+Using this scatter plot it determines that there is no real correlation between the Average Hours to Finish the Game and the final review score. The correlation between these two variables is very low since the correlation constant is only 0.213.
+
+```{r , echo=FALSE}
+
+
+vid_ggplot + geom_point(aes(x = Sales , y = ReviewScore), col = 'green',) + labs(title = "Distribution of Review Scores for Popular Video Games using Sales", x = 'Sales (millions)', y = 'Review Score')
+cor(videogames$Sales, videogames$ReviewScore)
+
+```
+
+Using this scatter plot it determines that there is no real correlation between the Sales of the Game and the final review score. The correlation between these two variables is very low since the correlation constant is only 0.298.
+
+```{r , echo=FALSE}
+
+
+vid_ggplot + geom_point(aes(x = Console , y = ReviewScore), col = 'orange', fill = 'blue',) + labs(title = "Distribution of Review Scores for Popular Video Games by comparing consoles", x = 'Type of Console', y = 'Review Score')
+
+
+```
+
+Using the scatter plot above its clear that there is no obvious correlation between the console the game is played on and the final review score. The correlation of the two variables is near 0 as the ranges in review scores for each of the five consoles is very similar.
+
+
+
+Conclusion:
+
+Overall, the conclusions determine that there is no clear relationships to determine the final review score for any game. 
+
+**The main takeaways from this study is that  its very difficult to predict how well a game will do by analyzing previous trends. This makes it challenging for game developers to make successful games because they are unsure about what specific factors contribute to a games popularity.**
+
+Areas of future research could group more than 2 variables together and compare it to the final review score to determine a relationship or test new variables that haven't been used in this study.
+
+Citations: 
+
+1. https://researchportal.port.ac.uk/en/publications/what-makes-a-blockbuster-video-game-an-empirical-analysis-of-us-s
+2. https://corgis-edu.github.io/corgis/csv/video_games/
+3. https://www.gq-magazine.co.uk/article/best-video-games-all-time
+           
+            
+            
+
+
+
+
