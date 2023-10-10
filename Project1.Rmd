@@ -48,7 +48,7 @@ vid_ggplot + geom_histogram(aes(x=ReviewScore, col = 'E'), col = 'black', fill =
 summary(videogames$ReviewScore)
 ```
 
-The distribution of the review scores is fairly skewed left and unimodal with the mean of about 69.9 and a median centered around 71. The spread of the distribution ranges from 20 to 98, so the range of the data is 78. The distribution doesn't have any unusual features because there are no glaringly obviously outliers.
+The distribution of the review scores is skewed left and unimodal with the mean of about 69.9 and a median centered around 71. The spread of the distribution ranges from 20 to 98, so the range of the data is 78. The distribution doesn't have any unusual features because there are no glaringly obviously outliers.
 
 ```{r, echo=FALSE}
 
